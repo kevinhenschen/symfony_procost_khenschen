@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Job;
 use App\Form\JobType;
 use App\Repository\JobRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,14 +18,14 @@ class JobController extends AbstractController
     /**
      * @Route("", name="homepage")
      * @param Request $request
-     * @param PaginatorInterface $paginator
+     * @param PaginationController $paginationController
      * @param JobRepository $jobRepository
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator, JobRepository $jobRepository)
+    public function index(Request $request, PaginationController $paginationController, JobRepository $jobRepository)
     {
         $jobs = $jobRepository->findAll();
-        $pagination = $this->setPagination($request,$paginator,$jobs);
+        $pagination = $paginationController->setPagination($request,$jobs);
 
         return $this->render('job/jobs.html.twig', [
             'pagination_jobs' => $pagination,
@@ -113,11 +112,5 @@ class JobController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('jobs_homepage');
-    }
-
-
-    private function setPagination(Request $request,PaginatorInterface $paginator,Array $array)
-    {
-        return $pagination = $paginator->paginate($array, $request->query->getInt('page',1), 10);
     }
 }

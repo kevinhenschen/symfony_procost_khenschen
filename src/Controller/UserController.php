@@ -6,8 +6,6 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +21,18 @@ class UserController extends AbstractController
     /**
      * @Route("", name="homepage")
      * @param Request $request
-     * @param PaginatorInterface $paginator
+     * @param PaginationController $paginationController
      * @param UserRepository $userRepository
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator, UserRepository $userRepository)
+    public function index(
+        Request $request,
+        PaginationController $paginationController,
+        UserRepository $userRepository
+    )
     {
         $employees = $userRepository->findAll();
-        $pagination = $this->setPagination($request, $paginator, $employees);
+        $pagination = $paginationController->setPagination($request, $employees);
 
         return $this->render('user/users.html.twig', [
             'pagination_employees' => $pagination,
@@ -41,13 +43,17 @@ class UserController extends AbstractController
      * @Route("/details/{id}", name="details")
      * @param Request $request
      * @param int $id
-     * @param PaginatorInterface $paginator
+     * @param PaginationController $paginationController
      * @param UserRepository $userRepository
      * @param ProjectRepository $projectRepository
      * @return Response
      */
     public function details(
-        Request $request, int $id, PaginatorInterface $paginator, UserRepository $userRepository, ProjectRepository $projectRepository)
+        Request $request,
+        int $id,
+        PaginationController $paginationController,
+        UserRepository $userRepository,
+        ProjectRepository $projectRepository)
     {
 
         $currentUser = $this->getUser();
@@ -61,7 +67,7 @@ class UserController extends AbstractController
                     $projects = $projectRepository->findAll();
 
                     $userProjects = $employee->getUserProjects()->getValues();
-                    $pagination = $this->setPagination($request, $paginator, $userProjects);
+                    $pagination = $paginationController->setPagination($request, $userProjects);
 
                     return $this->render('user/user_details.html.twig', [
                         'employee' => $employee,
@@ -77,11 +83,10 @@ class UserController extends AbstractController
     /**
      * @Route("/add", name="add")
      * @param Request $request
-     * @param UserRepository $userRepository
-     * @param UserPasswordEncoderInterface $userPasswordEncoder
+     * @param UserPasswordEncoderInterface $encoder
      * @return Response
      */
-    public function add(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $encoder)
+    public function add(Request $request, UserPasswordEncoderInterface $encoder)
     {
 
         $user = (new User());
@@ -124,7 +129,7 @@ class UserController extends AbstractController
         $currentUser = $this->getUser();
 
         if ($currentUser instanceof User) {
-            if ($currentUser->getId() === $id || $this->isGranted('ROLE_MANAGER')) {
+            if ($currentUser->getId() === $id) {
                 $user = $userRepository->find(['id' => $id]);
                 if (!is_null($user) && $user instanceof User) {
                     $form = $this->createForm(UserType::class, $user);
@@ -150,17 +155,11 @@ class UserController extends AbstractController
                 }
             }
         }
-        throw new AccessDeniedException('Vous ne pouvez pas modifier cet employée');
-    }
-
-    /**
-     * @param Request $request
-     * @param PaginatorInterface $paginator
-     * @param array $array
-     * @return PaginationInterface
-     */
-    private function setPagination(Request $request, PaginatorInterface $paginator, Array $array)
-    {
-        return $pagination = $paginator->paginate($array, $request->query->getInt('page', 1), 10);
+        throw new AccessDeniedException
+        (
+            $this->isGranted('ROLE_MANAGER') ?
+                'En tant que Manager' : 'En tant qu\'employé'
+                . ', vous ne pouvez pas modifier cet employé.'
+        );
     }
 }

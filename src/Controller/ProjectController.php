@@ -8,7 +8,6 @@ use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use DateTime;
 use Exception;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,14 +20,14 @@ class ProjectController extends AbstractController
     /**
      * @Route("", name="homepage")
      * @param Request $request
-     * @param PaginatorInterface $paginator
+     * @param PaginationController $paginationController
      * @param ProjectRepository $projectRepository
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator, ProjectRepository $projectRepository)
+    public function index(Request $request, PaginationController $paginationController, ProjectRepository $projectRepository)
     {
         $projects = $projectRepository->findAll();
-        $pagination = $this->setPagination($request,$paginator,$projects);
+        $pagination = $paginationController->setPagination($request,$projects);
 
         return $this->render('projects/projects.html.twig', [
             'pagination_projects' => $pagination,
@@ -39,12 +38,12 @@ class ProjectController extends AbstractController
      * @Route("/details/{id}", name="details")
      * @param Request $request
      * @param int $id
-     * @param PaginatorInterface $paginator
+     * @param PaginationController $paginationController
      * @param ProjectRepository $projectRepository
      * @return Response
      * @throws Exception
      */
-    public function details(Request $request, int $id, PaginatorInterface $paginator, ProjectRepository $projectRepository)
+    public function details(Request $request, int $id, PaginationController $paginationController, ProjectRepository $projectRepository)
     {
         $project = $projectRepository->find( ['id'=>$id] );
 
@@ -71,7 +70,7 @@ class ProjectController extends AbstractController
             }
 
             $userProjects = $project->getUserProjects()->getValues();
-            $pagination = $this->setPagination($request,$paginator,$userProjects);
+            $pagination = $paginationController->setPagination($request,$userProjects);
 
             return $this->render('projects/project_details.html.twig', [
                 'form' => $form ?? null,
@@ -153,11 +152,5 @@ class ProjectController extends AbstractController
         } else {
             return $this->redirectToRoute('main_dashboard');
         }
-    }
-
-
-    private function setPagination(Request $request,PaginatorInterface $paginator,Array $array)
-    {
-        return $pagination = $paginator->paginate($array, $request->query->getInt('page',1), 10);
     }
 }

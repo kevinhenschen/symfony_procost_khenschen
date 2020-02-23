@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b755dc1-e622-4f23-9518-1fa207c5f495" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/procost.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/procost.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/projects/projects.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/projects/projects.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sidebar/aside/_sidebar_aside.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sidebar/aside/_sidebar_aside.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/user_details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/user_details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,19 +154,19 @@
     <property name="settings.editor.selected.configurable" value="fr.adrienbrault.idea.symfony2plugin.ui.TwigSettingsForm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\symfony\procost\templates\projects" />
-      <recent name="C:\wamp64\www\symfony\procost\public" />
-      <recent name="C:\wamp64\www\symfony\procost\templates\bundles\TwigBundle\Exception" />
-      <recent name="C:\wamp64\www\symfony\procost\templates" />
-      <recent name="C:\wamp64\www\symfony\procost\templates\job" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\symfony\procost\templates\bundles\TwigBundle" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\card_description" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\top_employee" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\table_projects" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\table_production" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\symfony\procost\procost" />
+      <recent name="C:\wamp64\www\symfony\procost\templates\projects" />
+      <recent name="C:\wamp64\www\symfony\procost\public" />
+      <recent name="C:\wamp64\www\symfony\procost\templates\bundles\TwigBundle\Exception" />
+      <recent name="C:\wamp64\www\symfony\procost\templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -197,7 +195,7 @@
       <workItem from="1581954103960" duration="1495000" />
       <workItem from="1582133148546" duration="43000" />
       <workItem from="1582468025448" duration="569000" />
-      <workItem from="1582469533638" duration="14492000" />
+      <workItem from="1582469533638" duration="15485000" />
     </task>
     <servers />
   </component>

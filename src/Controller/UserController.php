@@ -157,8 +157,8 @@ class UserController extends AbstractController
         }
         throw new AccessDeniedException
         (
-            $this->isGranted('ROLE_MANAGER') ?
-                'En tant que Manager' : 'En tant qu\'employé'
+            ($this->isGranted('ROLE_MANAGER') ?
+                'En tant que Manager' : 'En tant qu\'employé')
                 . ', vous ne pouvez pas modifier cet employé.'
         );
     }

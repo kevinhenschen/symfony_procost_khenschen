@@ -1,6 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}Tableau de Bord{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/rentability.css') }}">
+    {{ parent() }}
+{% endblock %}
 
 {% block content %}
 

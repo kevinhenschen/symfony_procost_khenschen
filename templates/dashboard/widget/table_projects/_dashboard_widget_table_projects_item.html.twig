@@ -1,15 +1,27 @@
 <tr>
-    <th>
+    {% set rentability = project.getRentabilityRate %}
+    <td>
         <a href="{{ path("projects_details",{ "id": project.id })}}">{{ project.nom }}</a>
-    </th>
-    <th>{{ project.createdAt|date("d/m/Y") }}</th>
-    <th>{{ project.price|format_currency('EUR', locale='fr_FR') }}</th>
-    <th>{{ project.getCost|format_currency('EUR', locale='fr_FR') }}</th>
-    <th>
+    </td>
+    <td>{{ project.createdAt|date("d/m/Y") }}</td>
+    <td>{{ project.price|format_currency('EUR', locale='fr_FR') }}</td>
+    <td>{{ project.getCost|format_currency('EUR', locale='fr_FR') }}</td>
+    <td>
+        <div class="rentability-{{
+        rentability < 25 ? '0' :
+        rentability < 50 ? '1' :
+        rentability < 75 ? '2' :
+        rentability < 100 ? '3' : '4'
+        }} mb-2 "></div>
+        <span>
+            ≈ {{ rentability|number_format(2) }}%
+        </span>
+    </td>
+    <td>
     {% if project.isDelivered %}
         <span class="badge badge-success">OUI</span>
     {% else %}
         <span class="badge badge-danger">NON</span>
     {% endif %}
-    </th>
+    </td>
 </tr>

@@ -2,6 +2,11 @@
 
 {% block title %}Projets{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/rentability.css') }}">
+    {{ parent() }}
+{% endblock %}
+
 {% block content %}
 
     {% include 'page_presentation.html.twig'
@@ -28,6 +33,7 @@
                         <th>Date de création</th>
                         <th>Prix de vente</th>
                         <th>Coût</th>
+                        <th>Rentabilité</th>
                         <th>Est livré</th>
                         <th></th>
                     </tr>

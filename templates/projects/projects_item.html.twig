@@ -1,0 +1,25 @@
+<tr>
+    <td>{{ project.nom }}</td>
+    <td>{{ project.createdAt|date("d/m/Y") }}</td>
+    <td>{{ project.price|format_currency('EUR', locale='fr_FR') }}</td>
+    <td>{{ project.getCost|format_currency('EUR', locale='fr_FR') }}</td>
+    <td>
+        {% if project.isDelivered %}
+            <span class="badge badge-success">OUI</span>
+        {% else %}
+            <span class="badge badge-danger">NON</span>
+        {% endif %}
+    </td>
+    <td class="text-right">
+        {% if is_granted('ROLE_USER') %}
+                <a href="{{ path("projects_details",{ "id": project.id })}}" class="btn btn-primary btn-sm">
+                    <i class="fa fa-eye mr-0"></i>
+                </a>
+            {% if is_granted('ROLE_MANAGER') %}
+                <a href="{{ path("projects_edit",{ "id": project.id })}}" class="btn btn-info btn-sm">
+                    <i class="fa fa-pencil mr-0"></i>
+                </a>
+            {% endif %}
+        {% endif %}
+    </td>
+</tr>

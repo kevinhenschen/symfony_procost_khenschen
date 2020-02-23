@@ -1,0 +1,69 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ app_title }}{% endblock %}
+
+{% block content %}
+
+    {% include 'page_presentation.html.twig'
+        with
+        {   'app_icon': 'fa-book',
+            'app_title': app_title ,
+            'current_level_path' : 3,
+            'current_group_path' : 4,
+            'extra_name': app_title
+        }
+        only
+    %}
+
+
+    <div class="tile">
+
+        {% if (job is defined) and (job.users is defined) %}
+            {% set nb_users = job.users|length %}
+        {% endif %}
+
+        {% if (nb_users is defined) and (nb_users > 0) %}
+            <div class="text-center">
+                <p class="text-center">
+                    Le métier <b>"{{ job.nom }}"</b> possède {{ nb_users ~ ' ' ~ 'employée'|pluriel(nb_users,'s','') }}
+                </p>
+                <a class="btn btn-primary" href="{{ path('jobs_homepage') }}">Retour à la liste</a>
+            </div>
+        {% else %}
+             {% for message in app.flashes('success') %}
+                <div class="alert alert-dismissible alert-success my-4">
+                    {{ message|raw }}
+                </div>
+             {% endfor %}
+
+            {{ form_start(form) }}
+            <div class="form-horizontal">
+                <section>
+                    <h3>Informations générales</h3>
+                    <div class="row mt-4">
+                        <div class="offset-md-4 col-md-8">
+
+                            <div class="form-group row">
+                                {{ form_label(form.nom, null,  {'label_attr': {'class':'control-label col-md-3'} }) }}
+                                <div class="col-md-9">
+                                {{ form_widget(form.nom, {'attr': {'class':'form-control'} }) }}
+                                {{ form_errors(form.nom, {'attr': {'class':'form-control-feedback text-danger'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr/>
+                {{ form_rest(form) }}
+                <div class="row">
+                    <div class="offset-md-6 col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
+
+{% endblock %}
+

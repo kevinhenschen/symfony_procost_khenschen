@@ -1,0 +1,68 @@
+.notransition {
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    -moz-transition: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
+.manager-icon{
+    position: relative;
+}
+
+.manager-icon img{
+    animation: border-manager 4s ease-in-out infinite alternate-reverse;
+    box-shadow: 0 0 2em red;
+}
+
+.sidenav-toggled .manager-icon:after{
+        bottom: 5px !important;
+        left: 5px !important;
+        height: 15px !important;
+        width: 15px !important;
+}
+
+.manager-icon:after {
+        content: "";
+        position: absolute;
+        z-index: 1000;
+        bottom: 5px;
+        left: 45px;
+        height: 20px;
+        width: 20px;
+        background-image: url('../img/manager.png');
+        background-size: cover;
+}
+
+@keyframes border-manager {
+    0%{
+        box-shadow:  0 0 11px 3px  rgb(194,96,205);
+    }
+    10%{
+        box-shadow:  0 0 11px 3px rgb(117,132,223);
+    }
+    20%{
+        box-shadow:  0 0 11px 3px rgb(131,202,254);
+    }
+    30%{
+        box-shadow:  0 0 11px 3px rgb(140,224,165);
+    }
+    40%{
+        box-shadow:  0 0 11px 3px rgb(255,241,48);
+    }
+    50%{
+        box-shadow:  0 0 11px 3px rgb(253,90,59);
+    }
+    60%{
+        box-shadow:  0 0 11px 3px rgb(255,241,48);
+    }
+    70%{
+        box-shadow:  0 0 11px 3px rgb(140,224,165);
+    }
+    80%{
+        box-shadow:  0 0 11px 3px rgb(131,202,254);
+    }
+    90%{
+        box-shadow:  0 0 11px 3px rgb(117,132,223);
+    }
+}

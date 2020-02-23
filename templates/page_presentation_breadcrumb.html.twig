@@ -1,0 +1,246 @@
+<ul class="app-breadcrumb breadcrumb">
+{% block breadcrumb %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'main_dashboard',
+            'level_path': 1,
+            'current_level_path': current_level_path,
+            'group_path': 1,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/dashboard',
+            'extra_route': '',
+            'content': '<i class="fa fa-home fa-lg"></i>',
+            'show_everywhere':true
+        }
+        only
+    %}
+
+    {# EMPLOYEES BREADCRUMB #}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'employees_homepage',
+            'level_path': 2,
+            'current_level_path': current_level_path,
+            'group_path': 2,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/employees',
+            'extra_route': '?page=1',
+            'content': 'Employés',
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'employees_details',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 2,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/employees/details',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'employees_add',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 2,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/employees/add',
+            'extra_route': '',
+            'content': 'Nouvel Employée',
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'employees_edit',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 2,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/employees/edit',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {# PROJECTS BREADCRUMB #}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'projects_homepage',
+            'level_path': 2,
+            'current_level_path': current_level_path,
+            'group_path': 3,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/projects',
+            'extra_route': '?page=1',
+            'content': 'Projets',
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'projects_details',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 3,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/projects/details',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'projects_edit',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 3,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/projects/edit',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'projects_add',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 3,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/projects/add',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {# JOBS BREADCRUMB #}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'jobs_homepage',
+            'level_path': 2,
+            'current_level_path': current_level_path,
+            'group_path': 4,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/jobs',
+            'extra_route': '?page=1',
+            'content': 'Métiers',
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'jobs_details',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 4,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/jobs/details',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'jobs_add',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 4,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/jobs/add',
+            'extra_route': '',
+            'content': 'Nouveau Métier',
+            'show_everywhere':false
+        }
+        only
+    %}
+
+    {% include 'page_presentation_breadcrumb_item.html.twig'
+        with
+        {
+            'path_': 'jobs_edit',
+            'level_path': 3,
+            'current_level_path': current_level_path,
+            'group_path': 4,
+            'current_group_path': current_group_path,
+            'current_route': current_route,
+            'current_route_name': current_route_name,
+            'route': '/jobs/edit',
+            'extra_route': '',
+            'content': extra_name,
+            'show_everywhere':false
+        }
+        only
+    %}
+
+
+{% endblock %}
+</ul>

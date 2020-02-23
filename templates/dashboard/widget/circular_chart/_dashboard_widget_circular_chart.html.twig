@@ -1,0 +1,15 @@
+<div class="col-md-4">
+    <div class="card text-uppercase">
+        <div class="card-header text-center">{{ title }}</div>
+        <div class="card-body">
+            <p class="text-muted">
+                <i class="fa fa-database mr-2 text-primary"></i> {{ value }}% {{ value_name }}
+            </p>
+            <div class="embed-responsive embed-responsive-16by9">
+                <canvas id="{{ variable_name }}-chart" class="embed-responsive-item"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% set value = value|number_format %}
+<script> let {{ variable_name }}Data = [{{ value > 100 ? 100 : value }},{{ value > 100 ? 0 : 100 - value }}]; </script>

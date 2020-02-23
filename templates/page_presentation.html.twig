@@ -1,0 +1,15 @@
+<div class="app-title">
+    <div>
+        <h1><i class="fa {{ app_icon }}"></i>&nbsp{{ app_title }}</h1>
+    </div>
+    {%  include 'page_presentation_breadcrumb.html.twig'
+        with
+        {   'current_route': app.request.requestUri,
+            'current_route_name': app.request.attributes.get('_route'),
+            'current_level_path': current_level_path,
+            'current_group_path': current_group_path,
+            'extra_name': app_title
+        }
+        only
+    %}
+</div>

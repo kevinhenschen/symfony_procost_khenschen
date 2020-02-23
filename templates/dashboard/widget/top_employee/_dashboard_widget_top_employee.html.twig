@@ -1,0 +1,25 @@
+<div class="col-md-4">
+    {% set user = top_employee['user'] %}
+    {% set cout_total = top_employee['coutTotal'] %}
+    <div class="card">
+        <div class="card-header text-center text-uppercase">Top employé</div>
+        <div class="card-body">
+            <div class="text-center">
+                <img src="img/{{ user.prenom|lower }}{{ user.nom|lower }}.jpg" class="rounded-circle" width="58">
+                <p class="mt-2">
+                    <strong>{{ user.nom }} {{ user.prenom }}</strong>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="small mt">EMPLOYÉ DEPUIS</p>
+                    <p>{{ user.dateEmbauche|date('m')|frMonth|capitalize }} {{ user.dateEmbauche|date("Y") }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="small mt">COÛT TOTAL</p>
+                    <p>{{ cout_total|format_currency('EUR', locale= 'fr_FR') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

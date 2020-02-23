@@ -1,0 +1,103 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Tableau de Bord{% endblock %}
+
+{% block content %}
+
+    {% include 'page_presentation.html.twig'
+        with
+        {   'app_icon': 'fa-dashboard',
+            'app_title': 'Tableau de Bord',
+            'current_level_path' : 1,
+            'current_group_path' : 1
+        }
+        only
+    %}
+
+    {% set projects_on_going = projects|onGoing %}
+    {% set projects_on_delivered = projects|onDelivered %}
+    {% set projects_recently = projects|slice(0, 10) %}
+    {% set user_projects_recently = user_projects|slice(0, 10) %}
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+
+                {% include 'dashboard/widget/card_description/_dashboard_widget_card_description.html.twig'
+                    with
+                    {   'color': 'info',
+                        'icon': 'fa-spinner',
+                        'title': 'Projets en cours',
+                        'value': projects_on_going|length
+                    }
+                    only %}
+
+                {% include 'dashboard/widget/card_description/_dashboard_widget_card_description.html.twig'
+                    with
+                    {   'color': 'warning',
+                        'icon': 'fa-check-square-o',
+                        'title': 'Projets livrés',
+                        'value': projects_on_delivered|length
+                    }
+                    only %}
+
+                {% include 'dashboard/widget/card_description/_dashboard_widget_card_description.html.twig'
+                    with
+                    {   'color': 'primary',
+                        'icon': 'fa-users',
+                        'title': 'Employés',
+                        'value': nb_employees
+                    }
+                    only %}
+
+                {% include 'dashboard/widget/card_description/_dashboard_widget_card_description.html.twig'
+                    with
+                    {   'color': 'danger',
+                        'icon': 'fa-calendar-check-o',
+                        'title': 'Heures de production',
+                        'value': user_projects|productionTimeSpend
+                    }
+                    only %}
+
+            </div>
+            <div class="row">
+
+                {% include 'dashboard/widget/circular_chart/_dashboard_widget_circular_chart.html.twig'
+                    with
+                { 'title': 'Rentabilité',
+                  'value': projects_on_delivered|rentability|number_format(2),
+                  'value_name': 'RENTABLE',
+                  'variable_name': 'ratio'}
+                    only %}
+
+                {% include 'dashboard/widget/circular_chart/_dashboard_widget_circular_chart.html.twig'
+                    with
+                { 'title': 'Taux de livraison',
+                  'value': ((projects_on_delivered|length * 100) / projects|length)|number_format(2),
+                  'value_name': 'Livrés',
+                  'variable_name': 'delivered'}
+                    only %}
+
+                {% include 'dashboard/widget/top_employee/_dashboard_widget_top_employee.html.twig'
+                    with
+                {'top_employee': top_employee}
+                    only %}
+
+
+            </div>
+            <hr>
+            {% include 'dashboard/widget/table_projects/_dashboard_widget_table_projects.html.twig'
+                with
+            { 'projects' : projects_recently} only %}
+        </div>
+        {% include 'dashboard/widget/table_production/_dashboard_widget_table_production_time.html.twig'
+                with
+            { 'user_projects': user_projects_recently } only %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,16 @@
+
+{% if (route in current_route or current_level_path > level_path) and (group_path == current_group_path or show_everywhere == true)%}
+
+    <li class="breadcrumb-item">
+    {% if current_route_name != path_ %}
+        <a href="{{ path(path_) }}{{ extra_route }}">
+    {% endif %}
+
+            {{ content|raw }}
+
+    {% if current_route_name != path_ %}
+        </a>
+    {% endif %}
+    </li>
+
+{% endif %}

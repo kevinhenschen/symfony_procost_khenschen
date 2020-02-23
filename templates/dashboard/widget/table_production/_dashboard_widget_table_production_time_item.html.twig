@@ -1,0 +1,20 @@
+<li class="list-group-item">
+
+    {% if is_granted('ROLE_MANAGER') or app.user.id == user_project.user.id %}
+    <a href="{{ path("employees_details",{ "id": user_project.user.id })}}">
+    {% else %}
+    <b>
+    {% endif %}
+        {{ user_project.user.nom }} {{ user_project.user.prenom }}
+
+    {% if is_granted('ROLE_MANAGER') or app.user.id == user_project.user.id %}
+    </a>
+    {% else %}
+    </b>
+    {% endif %}
+    a travaillé sur
+    <a href="{{ path("projects_details",{ "id": user_project.project.id })}}">
+        {{ user_project.project.nom }}
+    </a>
+    <div class="text-muted font-italic text-right">{{ user_project.timeSpent }} heures</div>
+</li>

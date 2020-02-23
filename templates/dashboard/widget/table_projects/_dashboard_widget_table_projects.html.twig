@@ -1,0 +1,25 @@
+<div class="tile table-responsive">
+    <h2 class="tile-title">Les derniers projets</h2>
+    <table class="table table-hover table-striped table-sm">
+        <thead>
+        <tr>
+            <th>Projet</th>
+            <th>Date de création</th>
+            <th>Prix de vente</th>
+            <th>Coût</th>
+            <th>Est livré</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for project in projects %}
+            {% include 'dashboard/widget/table_projects/_dashboard_widget_table_projects_item.html.twig'
+                with
+                {'project' : project}
+                only
+            %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>

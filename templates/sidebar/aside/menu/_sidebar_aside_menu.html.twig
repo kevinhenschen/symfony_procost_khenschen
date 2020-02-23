@@ -1,0 +1,14 @@
+{% set route = app.request.requestUri  %}
+<ul class="app-menu">
+    {% include 'sidebar/aside/menu/_sidebar_aside_menu_item.html.twig'
+       with { 'route': route, 'route_url': '/dashboard', 'route_name': 'Tableau de bord', 'route_icon': 'fa-dashboard' } only %}
+
+    {% include 'sidebar/aside/menu/_sidebar_aside_menu_item.html.twig'
+        with { 'route': route, 'route_url': '/projects', 'route_name': 'Projets', 'route_icon': 'fa-laptop' } only %}
+
+    {% include 'sidebar/aside/menu/_sidebar_aside_menu_item.html.twig'
+        with { 'route': route, 'route_url': '/employees?page=1', 'route_name': 'Employés', 'route_icon': 'fa-users' } only %}
+
+    {% include 'sidebar/aside/menu/_sidebar_aside_menu_item.html.twig'
+        with { 'route': route, 'route_url': '/jobs', 'route_name': 'Métiers', 'route_icon': 'fa-book' } only %}
+</ul>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <title>{% block title %}PROCOST{% endblock %}</title>
+        <title>{% block title %}{{get_parameter("company.name")}}{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}"/>

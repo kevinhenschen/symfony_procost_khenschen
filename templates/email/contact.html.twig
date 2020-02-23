@@ -33,25 +33,24 @@
                         Vos identifiants :
                     </p>
 
-                    <button class="btn btn-primary w-100" type="button" data-toggle="collapse" data-target="#collapseIdentify" aria-expanded="false" aria-controls="collapseIdentify">
-                        Cliquez pour voir
-                    </button>
 
-                    <div class="collapse" id="collapseIdentify">
                         <div class="card card-body">
 
                             <span class="font-weight-bold">
                                 Adresse Mail :
                             </span>
-                            <span>{{ user.email }} <button class="btn btn-primary float-right" onclick="copyClipBoard('{{ user.email }}')">Copier</button></span>
+
+                            <span>{{ user.email }}</span>
+
+                            <br>
 
                             <span class="font-weight-bold">
                                 Mot de passe :
                             </span>
-                            <span>{{ plain_password }}<button class="btn btn-primary float-right" onclick="copyClipBoard('{{ plain_password }}')">Copier</button></span>
+
+                            <span>{{ plain_password }}</span>
 
                         </div>
-                    </div>
 
                     <p class="pt-5 font-weight-bold">
                         Merci ! <br> Cordialement. <br>

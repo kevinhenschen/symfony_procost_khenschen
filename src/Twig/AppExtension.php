@@ -1,13 +1,10 @@
 <?php
-
-
 // src/Twig/AppExtension.php
 namespace App\Twig;
 
 use App\Entity\Project;
-use App\Entity\User;
 use App\Entity\UserProject;
-use DateTime;
+use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -15,7 +12,8 @@ class AppExtension extends AbstractExtension
 {
     public function getFilters()
     {
-        return [
+        return
+        [
             new TwigFilter('onGoing', [$this, 'onGoing']),
             new TwigFilter('onDelivered', [$this, 'onDelivered']),
             new TwigFilter('rentability', [$this, 'rentability']),
@@ -32,8 +30,9 @@ class AppExtension extends AbstractExtension
      */
     public function onGoing(array $projects)
     {
-        return array_filter($projects, function($value){
-            return is_null($value->getDeliveredOn());
+        return array_filter($projects, function(Project $project)
+        {
+            return is_null($project->getDeliveredOn());
         });
     }
 
@@ -43,8 +42,9 @@ class AppExtension extends AbstractExtension
      */
     public function onDelivered(array $projects)
     {
-        return array_filter($projects, function($value){
-            return !is_null($value->getDeliveredOn());
+        return array_filter($projects, function(Project $project)
+        {
+            return !is_null($project->getDeliveredOn());
         });
     }
 
@@ -69,7 +69,7 @@ class AppExtension extends AbstractExtension
     /**
      * @param UserProject[] $userProjects
      * @return double
-     * @throws \Exception
+     * @throws Exception
      */
     public function productionTimeSpend(array $userProjects)
     {
@@ -85,8 +85,24 @@ class AppExtension extends AbstractExtension
      * @param integer $month_index
      * @return string
      */
-    public function frMonth($month_index){
-        $month = array("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+    public function frMonth($month_index)
+    {
+        $month = array
+        (
+            'janvier',
+            'février',
+            'mars',
+            'avril',
+            'mai',
+            'juin',
+            'juillet',
+            'août',
+            'septembre',
+            'octobre',
+            'novembre',
+            'décembre'
+        );
+
         return $month[$month_index - 1];
     }
 
@@ -97,7 +113,8 @@ class AppExtension extends AbstractExtension
      * @param $n
      * @return string
      */
-    public function pluriel($str,$i,$o,$n){
+    public function pluriel($str,$i,$o,$n)
+    {
         return $str . ($i > 1 ? $o : $n);
     }
 

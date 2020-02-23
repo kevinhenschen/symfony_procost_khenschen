@@ -1,0 +1,16 @@
+<div class="col-md-3">
+    <div class="tile">
+        <h2 class="tile-title text-center">Temps de production</h2>
+        <ul class="list-group">
+            {% for user_project in user_projects %}
+
+                {% include 'dashboard/widget/table_production/_dashboard_widget_table_production_time_item.html.twig'
+                with
+                    { 'user_project': user_project }
+                only
+                %}
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>

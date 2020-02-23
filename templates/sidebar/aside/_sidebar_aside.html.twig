@@ -1,0 +1,12 @@
+<aside class="app-sidebar">
+    <div class="app-sidebar__user {% if is_granted('ROLE_MANAGER') %}manager-icon{% endif %}">
+        <img class="app-sidebar__user-avatar"
+             src="{{ asset('img/' ~ (app.user.prenom|lower) ~ (app.user.nom|lower) ~ '.jpg') }}"
+             alt="User Image">
+        <div>
+            <p class="app-sidebar__user-name">{{ app.user.nom }} {{ app.user.prenom }}</p>
+            <p class="app-sidebar__user-designation">{{ app.user.job.nom }}</p>
+        </div>
+    </div>
+    {% include "sidebar/aside/menu/_sidebar_aside_menu.html.twig" %}
+</aside>

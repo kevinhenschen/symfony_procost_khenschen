@@ -1,0 +1,15 @@
+<tr>
+    <th>
+        <a href="{{ path("projects_details",{ "id": project.id })}}">{{ project.nom }}</a>
+    </th>
+    <th>{{ project.createdAt|date("d/m/Y") }}</th>
+    <th>{{ project.price|format_currency('EUR', locale='fr_FR') }}</th>
+    <th>{{ project.getCost|format_currency('EUR', locale='fr_FR') }}</th>
+    <th>
+    {% if project.isDelivered %}
+        <span class="badge badge-success">OUI</span>
+    {% else %}
+        <span class="badge badge-danger">NON</span>
+    {% endif %}
+    </th>
+</tr>

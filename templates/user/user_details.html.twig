@@ -1,0 +1,114 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Détail de {{employee.prenom|capitalize}} {{ employee.nom|upper }} {% endblock %}
+
+{% block content %}
+
+    {% include 'page_presentation.html.twig'
+        with
+        {   'app_icon': 'fa-users',
+            'app_title': "Détail de " ~ employee.prenom|capitalize ~ " " ~ employee.nom|upper ,
+            'current_level_path' : 3,
+            'current_group_path' : 2
+        }
+        only
+    %}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="tile">
+                    <table class="table table-striped table-bordered table-sm">
+                        <tbody>
+                        <tr>
+                            <th>Prénom</th>
+                            <td>{{employee.prenom|capitalize}}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ employee.nom|upper }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td> {{ employee.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Métier</th>
+                            <td>{{ employee.job.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Coût horaire</th>
+                            <td>{{ employee.coutHoraire|format_currency('EUR', locale='fr_FR') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date d'embauche</th>
+                            <td>{{ employee.dateEmbauche|date('d') }} {{ employee.dateEmbauche|date('m')|frMonth }} {{ employee.dateEmbauche|date('Y') }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="form.html" class="btn btn-info">
+                        <i class="fa fa-pencil"></i>Modifier
+                    </a>
+                </div>
+                <div class="tile">
+                    <h3 class="title-title mb-4">Ajouter un temps</h3>
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label for="select-projects" class="control-label col-md-6">Projet concerné</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="select-projects">
+                                    {% for project in projects %}
+                                    <option>{{ project.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="days-count" class="control-label col-md-6">Nombre de jours</label>
+                            <div class="col-md-6">
+                                <input id="days-count" class="form-control" type="number" min="1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offset-md-6 col-md-8">
+                                <a type="submit" class="btn btn-success"><i class="fa fa-save"></i>Enregistrer</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tile pb-5">
+                    <h3 class="tile-title">Historique des temps de production</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                            <tr>
+                                <th>Projet</th>
+                                <th>Temps</th>
+                                <th>Date de saisie</th>
+                                <th>Coût total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for userProject in pagination_user_project %}
+                            <tr>
+                                <td><a href="{{ path('projects_details',{ "id": userProject.project.id })}}">
+                                    {{ userProject.project.nom }}
+                                    </a>
+                                </td>
+                                <td>{{ userProject.timeSpent }} heures</td>
+                                <td>{{ userProject.createdAt|date('d-m-Y')}}</td>
+                                <td>{{ (userProject.timeSpent * userProject.user.coutHoraire)|format_currency('EUR', locale='fr_FR') }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr/>
+                    <nav class="float-right">
+                        {{ knp_pagination_render(pagination_user_project) }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+{% endblock %}

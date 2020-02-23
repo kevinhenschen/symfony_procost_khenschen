@@ -1,0 +1,45 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Projets{% endblock %}
+
+{% block content %}
+
+    {% include 'page_presentation.html.twig'
+        with
+        {   'app_icon': 'fa-laptop',
+            'app_title': 'Projets',
+            'current_level_path' : 2,
+            'current_group_path' : 3
+        }
+        only
+    %}
+
+        <div class="tile pb-5">
+            {% if is_granted('ROLE_MANAGER') %}
+            <a href="{{ path('projects_add') }}" class="btn btn-primary float-right mb-4">
+                <i class="fa fa-plus-circle mr-2"></i>Ajouter un projet
+            </a>
+            {% endif %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Projet</th>
+                        <th>Date de création</th>
+                        <th>Prix de vente</th>
+                        <th>Coût</th>
+                        <th>Est livré</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project in pagination_projects %}
+                        {% include 'projects/projects_item.html.twig' with { 'project': project } only %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr/>
+            <div class="text-center">{{ knp_pagination_render(pagination_projects) }}</div>
+        </div>
+{% endblock %}

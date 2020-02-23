@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Employés{% endblock %}
+
+{% block content %}
+
+    {% include 'page_presentation.html.twig'
+        with
+        {   'app_icon': 'fa-users',
+            'app_title': 'Employés',
+            'current_level_path' : 2,
+            'current_group_path' : 2
+        }
+        only
+    %}
+
+        <div class="tile pb-5">
+            {% if is_granted('ROLE_MANAGER') %}
+            <a href="{{ path('employees_add')}}" class="btn btn-primary float-right mb-4"><i class="fa fa-plus-circle mr-2"></i>Ajouter un employé</a>
+            {% endif %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Métier</th>
+                        <th>Coût horaire</th>
+                        <th>Date d'embauche</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for employee in pagination_employees %}
+                        {% include 'user/user_item.html.twig' %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr/>
+            <div class="text-center">{{ knp_pagination_render(pagination_employees) }}</div>
+        </div>
+{% endblock %}

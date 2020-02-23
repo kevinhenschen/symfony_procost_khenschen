@@ -199,6 +199,11 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getFullName(): ?string
+    {
+        return ucfirst($this->getPrenom()) . ' ' .strtoupper($this->getNom());
+    }
+
     public function getJob(): ?Job
     {
         return $this->job;

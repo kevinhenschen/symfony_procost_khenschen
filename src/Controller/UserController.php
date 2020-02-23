@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -18,6 +20,22 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserController extends AbstractController
 {
+
+    /**
+     * @var string
+     */
+    private $contactEmailAddress;
+    /**
+     * @var MailerInterface
+     */
+    private $mailer;
+
+    public function __construct(string $contactEmailAddress, MailerInterface $mailer)
+    {
+        $this->contactEmailAddress = $contactEmailAddress;
+        $this->mailer = $mailer;
+    }
+
     /**
      * @Route("", name="homepage")
      * @param Request $request
@@ -107,6 +125,17 @@ class UserController extends AbstractController
                     'password' => $plainPassword
                 ])
             );
+
+            $email = (new Email())
+                ->from($this->contactEmailAddress)
+                ->to($user->getEmail())
+                ->subject('Bienvenue sur PROCOST ' . $user->getUsername() . '!')
+                ->html($this->renderView(
+                    'email/contact.html.twig',
+                    ['user' => $user, 'plain_password' => $plainPassword]
+                ));
+
+            $this->mailer->send($email);
 
             return $this->redirectToRoute('employees_add');
         }

@@ -1,0 +1,25 @@
+html,body{
+    height: 100% !important;
+}
+
+.mail_logo {
+    width: 100%;
+    padding: 0 15px;
+    background-color: #1b8849;
+}
+
+.mail_logo a {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    line-height: 50px;
+}
+
+.mail_logo:focus, .mail_logo:hover {
+    text-decoration: none;
+    color: #fff;
+}
+

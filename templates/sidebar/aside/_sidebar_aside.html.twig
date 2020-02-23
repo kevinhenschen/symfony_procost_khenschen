@@ -4,7 +4,10 @@
              src="{{ asset('img/' ~ (app.user.prenom|lower) ~ (app.user.nom|lower) ~ '.jpg') }}"
              alt="User Image">
         <div>
-            <p class="app-sidebar__user-name">{{ app.user.nom }} {{ app.user.prenom }}</p>
+            <a href="{{ path("employees_details",{ "id": app.user.id }) }}"
+               class="app-sidebar__user-name text-white font-weight-bold">
+                {{ app.user.nom }} {{ app.user.prenom }}
+            </a>
             <p class="app-sidebar__user-designation">{{ app.user.job.nom }}</p>
         </div>
     </div>

@@ -10,20 +10,22 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
+use MongoDB\Driver\Manager;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-
-    private $users;
-    private $jobs;
-    private $projects;
-    private $userProjects;
-
     private $nbUsers = 20;
     private $nbJobs = 5;
     private $nbProjects = 60;
     private $nbUserProjects = 200;
+
+    /**
+     * @var Faker\Factory $faker
+     * @var PasswordEncoderInterface $encoder
+     * @var ObjectManager $manager
+     */
 
     private $faker;
     private $encoder;
@@ -75,7 +77,11 @@ class AppFixtures extends Fixture
                     ->setRoles(['ROLE_MANAGER']);
             }
 
-            $user->setJob($this->getReference('job' . $this->faker->numberBetween(0,$this->nbJobs-1)));
+            /**
+             * @var Job $job
+             */
+            $job = $this->getReference('job' . $this->faker->numberBetween(0,$this->nbJobs-1));
+            $user->setJob($job);
 
             $plainPassowrd = '02071996';
             $encoded = $this->encoder->encodePassword($user,$plainPassowrd);

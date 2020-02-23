@@ -3,13 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Job;
-use App\Entity\User;
 use App\Form\JobType;
 use App\Repository\JobRepository;
-use App\Repository\ProjectRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,7 +21,7 @@ class JobController extends AbstractController
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @param JobRepository $jobRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(Request $request, PaginatorInterface $paginator, JobRepository $jobRepository)
     {
@@ -37,7 +36,7 @@ class JobController extends AbstractController
     /**
      * @Route("/add", name="add")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function add(Request $request){
 
@@ -68,7 +67,7 @@ class JobController extends AbstractController
      * @param Request $request
      * @param int $id
      * @param JobRepository $jobRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function edit(Request $request, int $id, JobRepository $jobRepository){
         $job = $jobRepository->find([ 'id'=> $id ]);
@@ -102,7 +101,7 @@ class JobController extends AbstractController
      * @param Request $request
      * @param int $id
      * @param JobRepository $jobRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function remove(Request $request, int $id, JobRepository $jobRepository){
         $job = $jobRepository->find(['id' => $id]);

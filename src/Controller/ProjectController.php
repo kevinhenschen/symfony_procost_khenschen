@@ -6,11 +6,12 @@ use App\Entity\Project;
 use App\Form\ProjectDeliveryType;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
-use App\Repository\UserRepository;
 use DateTime;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/projects", name="projects_")
@@ -22,7 +23,7 @@ class ProjectController extends AbstractController
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @param ProjectRepository $projectRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(Request $request, PaginatorInterface $paginator, ProjectRepository $projectRepository)
     {
@@ -40,8 +41,8 @@ class ProjectController extends AbstractController
      * @param int $id
      * @param PaginatorInterface $paginator
      * @param ProjectRepository $projectRepository
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @return Response
+     * @throws Exception
      */
     public function details(Request $request, int $id, PaginatorInterface $paginator, ProjectRepository $projectRepository)
     {
@@ -56,7 +57,6 @@ class ProjectController extends AbstractController
 
                 $form = $this->createForm(ProjectDeliveryType::class, $project);
                 $form->handleRequest($request);
-                $form = $form->createView();
 
                 if( $form->isSubmitted() && $form->isValid() ) {
                     $project->setDeliveredOn(new DateTime());
@@ -67,6 +67,7 @@ class ProjectController extends AbstractController
                         'id'=> $id
                     ]);
                 }
+                $form = $form->createView();
             }
 
             $userProjects = $project->getUserProjects()->getValues();
@@ -83,8 +84,8 @@ class ProjectController extends AbstractController
     /**
      * @Route("/add", name="add")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @return Response
+     * @throws Exception
      */
     public function add(Request $request){
 
@@ -120,7 +121,7 @@ class ProjectController extends AbstractController
      * @param Request $request
      * @param int $id
      * @param ProjectRepository $projectRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function edit(Request $request, int $id, ProjectRepository $projectRepository){
         $project = $projectRepository->find([ 'id'=> $id ]);

@@ -4,16 +4,16 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\JobRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/employees", name="employees_")
@@ -25,12 +25,12 @@ class UserController extends AbstractController
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @param UserRepository $userRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(Request $request, PaginatorInterface $paginator, UserRepository $userRepository)
     {
         $employees = $userRepository->findAll();
-        $pagination = $this->setPagination($request,$paginator,$employees);
+        $pagination = $this->setPagination($request, $paginator, $employees);
 
         return $this->render('user/users.html.twig', [
             'pagination_employees' => $pagination,
@@ -44,9 +44,10 @@ class UserController extends AbstractController
      * @param PaginatorInterface $paginator
      * @param UserRepository $userRepository
      * @param ProjectRepository $projectRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function details(Request $request, int $id, PaginatorInterface $paginator, UserRepository $userRepository, ProjectRepository $projectRepository)
+    public function details(
+        Request $request, int $id, PaginatorInterface $paginator, UserRepository $userRepository, ProjectRepository $projectRepository)
     {
 
         $currentUser = $this->getUser();
@@ -78,18 +79,19 @@ class UserController extends AbstractController
      * @param Request $request
      * @param UserRepository $userRepository
      * @param UserPasswordEncoderInterface $userPasswordEncoder
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function add(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $userPasswordEncoder){
+    public function add(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $encoder)
+    {
 
         $user = (new User());
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if( $form->isSubmitted() && $form->isValid() ) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $plainPassword = $user->generatePassword();
-            $encoded = $userPasswordEncoder->encodePassword($user,$plainPassword);
+            $encoded = $encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encoded);
 
             $em = $this->getDoctrine()->getManager();
@@ -97,7 +99,7 @@ class UserController extends AbstractController
             $em->flush();
             $this->addFlash('success',
                 $this->renderView('user/user_form_success_flash.html.twig', [
-                    'password'=>$plainPassword
+                    'password' => $plainPassword
                 ])
             );
 
@@ -105,8 +107,8 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/user_form.html.twig', [
-            "form"=> $form->createView(),
-            "app_title"=> 'Nouvel Employée'
+            "form" => $form->createView(),
+            "app_title" => 'Nouvel Employée'
         ]);
     }
 
@@ -115,32 +117,32 @@ class UserController extends AbstractController
      * @param Request $request
      * @param int $id
      * @param UserRepository $userRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function edit(Request $request, int $id, UserRepository $userRepository){
+    public function edit(Request $request, int $id, UserRepository $userRepository)
+    {
         $currentUser = $this->getUser();
 
-        if($currentUser instanceof User){
-            if($currentUser->getId() === $id || $this->isGranted('ROLE_MANAGER'))
-            {
-                $user = $userRepository->find([ 'id'=> $id ]);
-                if( !is_null($user) && $user instanceof User ) {
+        if ($currentUser instanceof User) {
+            if ($currentUser->getId() === $id || $this->isGranted('ROLE_MANAGER')) {
+                $user = $userRepository->find(['id' => $id]);
+                if (!is_null($user) && $user instanceof User) {
                     $form = $this->createForm(UserType::class, $user);
                     $form->handleRequest($request);
 
-                    if( $form->isSubmitted() && $form->isValid() ) {
+                    if ($form->isSubmitted() && $form->isValid()) {
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($user);
                         $em->flush();
-                        $this->addFlash('success','Modification avec succées !');
+                        $this->addFlash('success', 'Modification avec succées !');
                         return $this->redirectToRoute('employees_edit', [
-                            'id'=> $id
+                            'id' => $id
                         ]);
                     }
 
                     return $this->render('user/user_form.html.twig', [
-                        "form"=> $form->createView(),
-                        "app_title"=> 'Modification de l\'employée ' . $user->getPrenom() . " " . $user->getNom()
+                        "form" => $form->createView(),
+                        "app_title" => 'Modification de l\'employée ' . $user->getPrenom() . " " . $user->getNom()
                     ]);
 
                 } else {
@@ -151,8 +153,14 @@ class UserController extends AbstractController
         throw new AccessDeniedException('Vous ne pouvez pas modifier cet employée');
     }
 
-    private function setPagination(Request $request,PaginatorInterface $paginator,Array $array)
+    /**
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param array $array
+     * @return PaginationInterface
+     */
+    private function setPagination(Request $request, PaginatorInterface $paginator, Array $array)
     {
-        return $pagination = $paginator->paginate($array, $request->query->getInt('page',1), 10);
+        return $pagination = $paginator->paginate($array, $request->query->getInt('page', 1), 10);
     }
 }

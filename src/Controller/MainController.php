@@ -44,7 +44,13 @@ class MainController extends AbstractController
         $topEmployee = $userRepository->getTopEmployee();
 
         return $this->render('dashboard/main_dashboard.html.twig',
-            [ 'projects'=> $projects, 'nb_employees'=> $nbEmployees, 'user_projects'=> $userProjects, 'top_employee'=> $topEmployee ]);
+            [
+                'projects'=> $projects,
+                'nb_employees'=> $nbEmployees,
+                'user_projects'=> $userProjects,
+                'top_employee'=> $topEmployee
+            ]
+        );
     }
 
 

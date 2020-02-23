@@ -9,10 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProjectDeliveryType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder;
-    }
+    public function buildForm(FormBuilderInterface $builder, array $options){}
 
     public function configureOptions(OptionsResolver $resolver)
     {

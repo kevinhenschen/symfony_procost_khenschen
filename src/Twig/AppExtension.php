@@ -5,24 +5,50 @@ namespace App\Twig;
 use App\Entity\Project;
 use App\Entity\UserProject;
 use Exception;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+
+    protected $params;
+
+    public function getFunctions()
+    {
+        return
+        [
+            new TwigFunction('get_parameter', [$this, 'getParameter'])
+        ];
+    }
+
     public function getFilters()
     {
         return
         [
-            new TwigFilter('onGoing', [$this, 'onGoing']),
-            new TwigFilter('onDelivered', [$this, 'onDelivered']),
+            new TwigFilter('on_going', [$this, 'onGoing']),
+            new TwigFilter('on_delivered', [$this, 'onDelivered']),
             new TwigFilter('rentability', [$this, 'rentability']),
-            new TwigFilter('productionTimeSpend', [$this, 'productionTimeSpend']),
-            new TwigFilter('frMonth', [$this, 'frMonth']),
+            new TwigFilter('production_time_spend', [$this, 'productionTimeSpend']),
+            new TwigFilter('fr_month', [$this, 'frMonth']),
             new TwigFilter('pluriel', [$this, 'pluriel']),
         ];
     }
 
+    public function __construct(ParameterBagInterface $params)
+    {
+        $this->params = $params;
+    }
+
+    /**
+     * @param string parameter
+     * @return string
+     */
+    public function getParameter($parameter): string
+    {
+        return $this->params->get($parameter) ?? 'UNKNOWN VARIABLE';
+    }
 
     /**
      * @param Project[] $projects

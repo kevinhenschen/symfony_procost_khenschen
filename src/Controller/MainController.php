@@ -53,5 +53,21 @@ class MainController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/mail_preview", name="mail")
+     * @return Response
+     */
+    public function mailPreview(): Response
+    {
+        $currentUser = $this->getUser();
+
+        return $this->render('email/contact.html.twig',
+            [
+                'user' => $currentUser,
+                'plain_password' => 'iopsaodeoSdec2c!'
+            ]
+        );
+    }
+
 
 }

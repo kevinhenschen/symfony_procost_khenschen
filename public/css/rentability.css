@@ -1,0 +1,52 @@
+div[class^="rentability-"]
+{
+    position: relative;
+    height: calc(256px / 8);
+    width: calc(390px / 8);
+}
+
+div[class^="rentability-"]:after
+{
+    background: url('../img/rate.png') 0, 0;
+    z-index: 1;
+}
+
+div[class^="rentability-"]:before
+{
+    background: url('../img/rate_negative.png') 0, 0;
+    z-index: 0;
+}
+
+div[class^="rentability-"]:after, div[class^="rentability-"]:before
+{
+    content:'';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    background-size: cover;
+}
+
+.rentability-0:after
+{
+    width: calc(45px / 8) !important;
+}
+
+.rentability-1:after
+{
+    width: calc(131px / 8) !important;
+}
+
+.rentability-2:after
+{
+    width: calc(216px / 8) !important;
+}
+
+.rentability-3:after
+{
+    width: calc(302px / 8) !important;
+}
+
+.rentability-4:after
+{
+    width: calc(390px / 8) !important;
+}

@@ -25,14 +25,14 @@ Le sujet porte sur la création d'une interface web, intitulée Procost, et perm
 | Liste des Employés |✔|✔| Fait
 | Voir un Employé |✔|❔| Fait
 | Ajouter un Employé |✔| ❌| Fait
-| Éditer un Employé |❌| ❔|Supprimer autorisation Manager
+| Éditer un Employé |❌| ❔|Fait
 | Ajouter du temps |✔|❔| Fait
 
-# Le Formattage du Code
+# Le Formatage du Code
 
-| Formattage | Avancement (*ressenti personnel)
+| Formatage | Avancement (*ressenti personnel)
 | ------ | ------ |
-| Code Général | Assez Propre (80% Formatée)
+| Code Général | Plus Propre (85% Formatée)
 | Template | Aménagement et organisation à voir (65% Formatée)
 | DataBase | Fait (100% Formatée)
 | Fixtures | Vérification Supplémentaire (80% Formatée)

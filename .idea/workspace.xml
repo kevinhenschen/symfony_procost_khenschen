@@ -2,27 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b755dc1-e622-4f23-9518-1fa207c5f495" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/mail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/email/contact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/main_mail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/procost.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/procost.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Twig/AppExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Twig/AppExtension.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/mail.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/mail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/main_dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/main_dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/widget/top_employee/_dashboard_widget_top_employee.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/widget/top_employee/_dashboard_widget_top_employee.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/projects/project_details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/projects/project_details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/user_details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/user_details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/user_item.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/user_item.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/email/contact.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +145,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
     </include_path>
   </component>
   <component name="ProjectId" id="1XpsncVGQTBDiU5j8c1nTmVeOn8" />
@@ -174,11 +165,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\symfony\procost\procost\assets\css" />
+      <recent name="C:\wamp64\www\symfony\procost\procost\assets" />
       <recent name="C:\wamp64\www\symfony\procost\templates\bundles\TwigBundle" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\card_description" />
       <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\top_employee" />
-      <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\table_projects" />
-      <recent name="C:\wamp64\www\symfony\procost\templates\dashboard\widget\table_production" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\symfony\procost\procost\public\js" />
@@ -214,7 +205,7 @@
       <workItem from="1581954103960" duration="1495000" />
       <workItem from="1582133148546" duration="43000" />
       <workItem from="1582468025448" duration="569000" />
-      <workItem from="1582469533638" duration="19801000" />
+      <workItem from="1582469533638" duration="22106000" />
     </task>
     <servers />
   </component>

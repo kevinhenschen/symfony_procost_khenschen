@@ -1,73 +1,67 @@
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/mail.css') }}"/>
-{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/mail.js') }}"></script>
-{% endblock %}
+    {% block body %}
+        {% apply inline_css(source('@styles/mail.css')) %}
+        {% apply inline_css(source('@styles/main_mail.css')) %}
 
-
-{% block body %}
-
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-md-12 pt-2 px-0">
-                <div class="mail_logo text-center" ><a href='{{ path('main_dashboard') }}'>{{get_parameter("company.name")}}</a></div>
-            </div>
-        </div>
-
-        <div class="row h-100">
-            <div class="col-md-12 px-5 pt-2 bg-light pb-3">
-                <p class="text-center font-weight-bold mt-3">
-                    Bienvenue {{ user.getFullName }} !
-                </p>
-                <p class="text-justify">
-                    Nous sommes heureux de vous comptez parmis nos employées. C'est pour cela que nous avons le plaisir de
-                    vous notifier de votre inscription à notre service de gestion de projets ! Vous pourrez donc suivre
-                    en temps et en heure votre évolution en ajoutant vos temps de travail sur chaque projet auquel vous aurez
-                    investi. Cependant une inscription ne se fait pas sans identifiants, c'est pour cela que nous vous envoyons
-                    directement par mail vos identifiants.
-                </p>
-                <p class="text-danger text-center font-weight-bold font-italic">
-                    Attention : nous vous demandons de bien conserver vos identifiants pour
-                pouvoir supprimer ce mail le plus rapidement possible.
-                </p>
-                <br>
-                <p class="text-center font-weight-bold">
-                    Vos identifiants :
-                </p>
-
-                <button class="btn btn-primary w-100" type="button" data-toggle="collapse" data-target="#collapseIdentify" aria-expanded="false" aria-controls="collapseIdentify">
-                    Cliquez pour voir
-                </button>
-
-                <div class="collapse" id="collapseIdentify">
-                    <div class="card card-body">
-
-                        <span class="font-weight-bold">
-                            Adresse Mail :
-                        </span>
-                        <span>{{ user.email }} <button class="btn btn-primary float-right" onclick="copyClipBoard('{{ user.email }}')">Copier</button></span>
-
-                        <span class="font-weight-bold">
-                            Mot de passe :
-                        </span>
-                        <span>{{ plain_password }}<button class="btn btn-primary float-right" onclick="copyClipBoard('{{ plain_password }}')">Copier</button></span>
-
-                    </div>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 pt-2 px-0">
+                    <div class="mail_logo text-center" ><a class="text-white" href='{{ path('main_dashboard') }}'>{{get_parameter("company.name")}}</a></div>
                 </div>
+            </div>
 
-                <p class="pt-5 font-weight-bold">
-                    Merci ! <br> Cordialement. <br>
-                </p>
-                <p class="float-right font-weight-bold font-italic">L'équipe {{get_parameter("company.name")}}.</p>
+            <div class="row h-100">
+                <div class="col-md-12 px-5 pt-2 bg-light pb-3">
+                    <p class="text-center font-weight-bold mt-3">
+                        Bienvenue {{ user.getFullName }} !
+                    </p>
+                    <p class="text-justify">
+                        Nous sommes heureux de vous comptez parmis nos employées. C'est pour cela que nous avons le plaisir de
+                        vous notifier de votre inscription à notre service de gestion de projets ! Vous pourrez donc suivre
+                        en temps et en heure votre évolution en ajoutant vos temps de travail sur chaque projet auquel vous aurez
+                        investi. Cependant une inscription ne se fait pas sans identifiants, c'est pour cela que nous vous envoyons
+                        directement par mail vos identifiants.
+                    </p>
+                    <p class="text-danger text-center font-weight-bold font-italic">
+                        Attention : nous vous demandons de bien conserver vos identifiants pour
+                    pouvoir supprimer ce mail le plus rapidement possible.
+                    </p>
+                    <br>
+                    <p class="text-center font-weight-bold">
+                        Vos identifiants :
+                    </p>
 
+                    <button class="btn btn-primary w-100" type="button" data-toggle="collapse" data-target="#collapseIdentify" aria-expanded="false" aria-controls="collapseIdentify">
+                        Cliquez pour voir
+                    </button>
+
+                    <div class="collapse" id="collapseIdentify">
+                        <div class="card card-body">
+
+                            <span class="font-weight-bold">
+                                Adresse Mail :
+                            </span>
+                            <span>{{ user.email }} <button class="btn btn-primary float-right" onclick="copyClipBoard('{{ user.email }}')">Copier</button></span>
+
+                            <span class="font-weight-bold">
+                                Mot de passe :
+                            </span>
+                            <span>{{ plain_password }}<button class="btn btn-primary float-right" onclick="copyClipBoard('{{ plain_password }}')">Copier</button></span>
+
+                        </div>
+                    </div>
+
+                    <p class="pt-5 font-weight-bold">
+                        Merci ! <br> Cordialement. <br>
+                    </p>
+                    <p class="float-right font-weight-bold font-italic">L'équipe {{get_parameter("company.name")}}.</p>
+
+                </div>
             </div>
         </div>
-    </div>
+        {% endapply %}
+        {% endapply %}
 
-{% endblock %}
+    {% endblock %}

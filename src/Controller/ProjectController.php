@@ -56,6 +56,7 @@ class ProjectController extends AbstractController
 
                 $form = $this->createForm(ProjectDeliveryType::class, $project);
                 $form->handleRequest($request);
+                $form = $form->createView();
 
                 if( $form->isSubmitted() && $form->isValid() ) {
                     $project->setDeliveredOn(new DateTime());
@@ -72,7 +73,7 @@ class ProjectController extends AbstractController
             $pagination = $this->setPagination($request,$paginator,$userProjects);
 
             return $this->render('projects/project_details.html.twig', [
-                'form' => $form->createView() ?? null,
+                'form' => $form ?? null,
                 'project' => $project,
                 'pagination_user_project' => $pagination
             ]);

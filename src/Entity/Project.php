@@ -169,4 +169,16 @@ class Project
         }
         return $project_cost;
     }
+
+    public function getRentabilityRate():float
+    {
+        $cost = $this->getCost();
+
+        if($cost == 0) {
+            return 100;
+        }else{
+            return (($this->getPrice() * 100) / $cost);
+        }
+    }
+
 }

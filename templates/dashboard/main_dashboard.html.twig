@@ -18,8 +18,8 @@
         only
     %}
 
-    {% set projects_on_going = projects|onGoing %}
-    {% set projects_on_delivered = projects|onDelivered %}
+    {% set projects_on_going = projects|on_going %}
+    {% set projects_on_delivered = projects|on_delivered %}
     {% set projects_recently = projects|slice(0, 10) %}
     {% set user_projects_recently = user_projects|slice(0, 10) %}
 
@@ -59,7 +59,7 @@
                     {   'color': 'danger',
                         'icon': 'fa-calendar-check-o',
                         'title': 'Heures de production',
-                        'value': user_projects|productionTimeSpend
+                        'value': user_projects|production_time_spend
                     }
                     only %}
 

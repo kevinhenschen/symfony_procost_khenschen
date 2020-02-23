@@ -3,7 +3,7 @@
     <td>{{ employee.email }}</td>
     <td>{{ employee.job.nom }}</td>
     <td>{{ employee.coutHoraire|format_currency('EUR', locale='fr_FR') }}</td>
-    <td>{{ employee.dateEmbauche|date('m')|frMonth|capitalize }} {{ employee.dateEmbauche|date("Y") }}</td>
+    <td>{{ employee.dateEmbauche|date('m')|fr_month|capitalize }} {{ employee.dateEmbauche|date("Y") }}</td>
     <td class="text-right">
         {% if is_granted('ROLE_USER') %}
             {% if is_granted('ROLE_MANAGER') or employee.id == app.user.id %}

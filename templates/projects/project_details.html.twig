@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <th>Date de création :</th>
-                            <td>{{ project.createdAt|date('d') }} {{ project.createdAt|date('m')|frMonth }} {{ project.createdAt|date('Y') }}</td>
+                            <td>{{ project.createdAt|date('d') }} {{ project.createdAt|date('m')|fr_month }} {{ project.createdAt|date('Y') }}</td>
                         </tr>
                         <tr>
                             <th>Prix de vente :</th>
@@ -85,7 +85,7 @@
                             ✅
                             Livrée le
                             {{ project.deliveredOn|date('d') }}
-                            {{ project.deliveredOn|date('m')|frMonth }}
+                            {{ project.deliveredOn|date('m')|fr_month }}
                             {{ project.deliveredOn|date('Y') }}
                         </span>
                     </div>

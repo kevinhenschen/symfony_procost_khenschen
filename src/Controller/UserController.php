@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
@@ -103,6 +104,7 @@ class UserController extends AbstractController
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
      * @return Response
+     * @throws TransportExceptionInterface
      */
     public function add(Request $request, UserPasswordEncoderInterface $encoder)
     {

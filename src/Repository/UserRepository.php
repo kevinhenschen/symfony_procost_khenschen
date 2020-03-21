@@ -13,7 +13,6 @@ use Doctrine\ORM\OptimisticLockException;
 
 /**
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
@@ -26,14 +25,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function createQueryBuilder($alias, $indexBy = null)
     {
         return parent::createQueryBuilder($alias, $indexBy)
-            ->addSelect('job, userProjects')
+            ->addSelect('job')
+            ->addSelect('userProjects')
             ->leftJoin($alias . '.job', 'job')
             ->leftJoin($alias . '.userProjects', 'userProjects');
     }
 
+    public function findAll(){
+        return $this->createQueryBuilder('u')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function countEmployee()
     {
-        return parent::createQueryBuilder('u')
+        return $this->createQueryBuilder('u')
             ->select('count(u.id)')
             ->getQuery()
             ->getSingleScalarResult();

@@ -9,7 +9,6 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 /**
  * @method UserProject|null find($id, $lockMode = null, $lockVersion = null)
  * @method UserProject|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserProject[]    findAll()
  * @method UserProject[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class UserProjectRepository extends ServiceEntityRepository
@@ -24,7 +23,14 @@ class UserProjectRepository extends ServiceEntityRepository
         return parent::createQueryBuilder($alias, $indexBy)
             ->addSelect('user')
             ->addSelect('project')
-            ->leftJoin($alias . '.users', 'users')
+            ->leftJoin($alias . '.user', 'user')
             ->leftJoin($alias . '.project', 'project');
     }
+
+    public function findAll(){
+        return $this->createQueryBuilder('pr')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

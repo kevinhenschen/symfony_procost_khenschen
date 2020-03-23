@@ -78,3 +78,12 @@ composer server
 | Faker | [fzaninotto/Faker/README.md](https://github.com/fzaninotto/Faker/blob/master/readme.md)
 | KnpPaginatorBundle | [KnpPaginatorBundle/README.md](https://github.com/KnpLabs/KnpPaginatorBundle/blob/master/README.md) |
 
+### Informations Importantes
+
+Toutes les Pages : Le système de "photo" étant selon vous une chose complexe à Faire (pour l'inscription et la récupération n'à pas était mise comme vous me l'avez conseillée). J'ai juste mis une image en "brute" pour mon propre compte.
+Page Projets : Le système renvoi environ 18 requêtes (cela est du au GetCost() qui doit executer une requête par projet pour récupérer le coût actuel de production d'un projet)
+
+Le Panel de gauche : si vous êtes le mananger, un effet d'halo multicolor s'affichera, ainsi qu'une petite étoile permettant l'identification d'un compte Mananger.
+
+
+

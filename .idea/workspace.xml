@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b755dc1-e622-4f23-9518-1fa207c5f495" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/user_item.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/user_item.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +151,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files (x86)/Steam/steamapps/common/GarrysMod/garrysmod/lua" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="fr.adrienbrault.idea.symfony2plugin.ui.TwigSettingsForm" />
   </component>
@@ -200,6 +200,9 @@
       <workItem from="1582469533638" duration="22439000" />
       <workItem from="1582528543544" duration="5715000" />
       <workItem from="1582575388044" duration="183000" />
+      <workItem from="1584204192162" duration="2633000" />
+      <workItem from="1584790330748" duration="5006000" />
+      <workItem from="1584990197602" duration="831000" />
     </task>
     <servers />
   </component>
@@ -237,20 +240,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1581772200300" />
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1582575391096">
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1584990204881">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582133150506" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584990204881" />
     <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582575391096" />
-    <state x="1011" y="339" width="737" height="578" key="find.popup" timestamp="1582498615815">
+    <state x="645" y="308" width="737" height="606" key="find.popup" timestamp="1584990662717">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1011" y="339" width="737" height="578" key="find.popup/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1582498615815" />
-    <state x="645" y="308" width="737" height="606" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1581939653926" />
+    <state x="645" y="308" width="737" height="606" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584990662717" />
     <state x="701" y="163" key="refactoring.ChangeSignatureDialog" timestamp="1581885591135">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="701" y="163" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1581885591135" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1584990540177">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1584990540177" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581894472741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
